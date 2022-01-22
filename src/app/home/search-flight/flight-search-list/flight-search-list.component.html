@@ -1,0 +1,8 @@
+<h3>flight-search-list</h3>
+<ul class="items">
+    <li (click)="bookFlightTicket(flight)"   *ngFor="let flight of flightSearchListValues">
+        <button type="button" >{{flight.id}} {{flight.name}}</button>
+    </li>
+</ul>
+
+

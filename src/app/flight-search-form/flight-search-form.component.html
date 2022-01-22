@@ -1,0 +1,56 @@
+<form [formGroup]="flightBookForm">
+
+    <div class="form-group">
+        Username : <input type="text" formControlName="userName" class="form-control"
+        [class.is-invalid]="userNamevalidation.invalid && userNamevalidation.touched"> 
+        <div *ngIf="userNamevalidation.invalid && userNamevalidation.touched">
+            <small class="text-danger" [class.d-none]="userNamevalidation.valid || userNamevalidation.untouched">
+                Username is required</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Email id : <input type="text" formControlName="emailId" class="form-control"
+        [class.is-invalid]="emailIdvalidation.invalid && emailIdvalidation.touched">
+        <div *ngIf="emailIdvalidation.invalid && emailIdvalidation.touched">
+            <small class="text-danger" [class.d-none]="emailIdvalidation.valid || emailIdvalidation.untouched">Email id is required</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Passengers count : <input type="text" formControlName="passengersCount" class="form-control"
+        [class.is-invalid]="passengersCountvalidation.invalid && passengersCountvalidation.touched">
+        <div *ngIf="passengersCountvalidation.invalid && passengersCountvalidation.touched">
+            <small class="text-danger" [class.d-none]="passengersCountvalidation.valid || passengersCountvalidation.untouched">Passenger count is required</small>
+        </div> 
+    </div >
+
+    <div class="form-group">
+        Meals : <input type="text" formControlName="meal" class="form-control" >
+    </div>
+    <br>
+    <div formArrayName="addPassenger">
+    <div *ngFor="let passenger of addPassenger.controls; let i = index;">  
+        <div [formGroupName]="i">
+            <div class="form-group">
+                Passenger {{i+1}} Name : <input type="text" formControlName="passengerName" class="form-control" required>
+            </div>
+            <div class="form-group">
+                Passenger {{i+1}} Age : <input type="text" formControlName="passengerAge" class="form-control" required>
+            </div>
+            <div class="form-group">
+                Passenger {{i+1}} gender : <input type="text" formControlName="gender" class="form-control" required>
+            </div >
+            <div class="form-group">
+                passenger {{i+1}} Seat No : <input type="text" formControlName="seatNo" class="form-control" required >
+            </div > 
+        </div>
+    </div> 
+    </div>
+    <br>
+    <button class="btn btn-secondary btn-sm" (click)="addPassengers()">Add Passenger details</button>  
+    <br>
+    <br>
+    <button [disabled]="flightBookForm.invalid" class="btn btn-primary" (click)="displayForm()">Submit</button>
+
+</form>

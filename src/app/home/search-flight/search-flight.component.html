@@ -1,0 +1,33 @@
+<form [formGroup]="searchFlightForm">
+
+    <div class="form-group">
+        Source place : <input type="text" formControlName="sourcePlace" class="form-control"
+        [class.is-invalid]="sourcePlaceValidation.invalid && sourcePlaceValidation.touched"> 
+        <div *ngIf="sourcePlaceValidation.invalid && sourcePlaceValidation.touched">
+            <small class="text-danger" [class.d-none]="sourcePlaceValidation.valid || sourcePlaceValidation.untouched">
+                Source place is required</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Destination place : <input type="text" formControlName="destinationPlace" class="form-control"
+        [class.is-invalid]="destinationPlaceValidation.invalid && destinationPlaceValidation.touched">
+        <div *ngIf="destinationPlaceValidation.invalid && destinationPlaceValidation.touched">
+            <small class="text-danger" [class.d-none]="destinationPlaceValidation.valid || destinationPlaceValidation.untouched">
+                Destination place is required</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        Travel Date : <input type="text" formControlName="date" class="form-control"
+        [class.is-invalid]="dateValidation.invalid && dateValidation.touched">
+        <div *ngIf="dateValidation.invalid && dateValidation.touched">
+            <small class="text-danger" [class.d-none]="dateValidation.valid || dateValidation.untouched">
+                Date is required</small>
+        </div> 
+    </div >
+    <br>
+    <button [disabled]="searchFlightForm.invalid" class="btn btn-secondary btn-sm" (click)=loadFlights()>Search</button>
+    <!-- <router-outlet></router-outlet> -->
+</form>
+
